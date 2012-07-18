@@ -1,0 +1,35 @@
+DROP TABLE IF EXISTS sequence;
+
+CREATE TABLE sequence
+(
+    number  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `key`   CHAR(1),
+    
+    UNIQUE INDEX (`key`)
+
+) TYPE=InnoDB;
+
+ALTER TABLE sequence AUTO_INCREMENT = 1572864;
+
+
+
+DROP TABLE IF EXISTS reserved;
+
+CREATE TABLE reserved
+(
+    number  BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+    reason  VARCHAR(32)
+
+) TYPE=InnoDB;
+
+
+
+DROP TABLE IF EXISTS assigned;
+
+CREATE TABLE assigned
+(
+    number  BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip_addr INT UNSIGNED
+
+) TYPE=InnoDB;
