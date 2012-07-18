@@ -11,16 +11,25 @@
         return $db;
     }
     
+   /**
+    * Check a few high bits to determine whether the number was made here.
+    */
     function is_artisinal($num)
     {
         return $num & 0xF00000 == 0x100000;
     }
     
+   /**
+    * Prepare a raw integer with the right high bits.
+    */
     function artisinate($num)
     {
         return (($num - ($num & 0xFFFFF)) << 4) | ($num & 0xFFFFF) | 0x100000;
     }
     
+   /**
+    * Generate a single new integer, return it.
+    */
     function next_integer($db)
     {
         while(true)
@@ -49,11 +58,11 @@
             
             $reserved = mysql_fetch_row($res);
             
-            // Yes? Try again. Each integer is a unique creation.
+            // They did? Try again. Each integer is a unique creation.
             if($reserved)
                 continue;
 
-            // Make a note of it.
+            // This one's new; make a note of it.
             $q = sprintf("INSERT INTO assigned (number, ip_addr) VALUES (%d, INET_ATON('%s'))",
                          $num, mysql_real_escape_string($_SERVER['REMOTE_ADDR'], $db));
             
@@ -69,12 +78,13 @@
     
     if(isset($_GET['count']) && !is_numeric($_GET['count']))
     {
-        header('HTTP/1.1 404');
+        header('HTTP/1.1 403');
         header('Content-Type: text/plain');
         die("Please use a number for the count.\n");
     }
     
     $count = is_numeric($_GET['count']) ? intval($_GET['count']) : 1;
+    $format = isset($_GET['format']) ? $_GET['format'] : 'text';
     
     if($count > 10)
     {
@@ -94,8 +104,17 @@
     }
 
     mysql_close($db);
-
-    header('Content-Type: text/plain');
-    echo join("\n", $nums);
+    
+    switch($format)
+    {
+        case 'json':
+            header('Content-Type: application/json');
+            printf("%s\n", json_encode($nums));
+            break;
+        
+        default:
+            header('Content-Type: text/plain');
+            printf("%s\n", join("\n", $nums));
+    }
 
 ?>
