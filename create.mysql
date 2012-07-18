@@ -33,3 +33,12 @@ CREATE TABLE assigned
     ip_addr INT UNSIGNED
 
 ) TYPE=InnoDB;
+
+#
+# This requires primes-1.txt to be uncompressed.
+#
+
+LOAD DATA LOCAL INFILE 'primes-1.txt'
+    INTO TABLE reserved (number);
+
+UPDATE reserved SET reason = 'prime';
