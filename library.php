@@ -28,6 +28,26 @@
     }
     
    /**
+    * Retrieve a single previously-created integer, return information about it.
+    */
+    function get_integer($db, $num)
+    {
+        $q = sprintf('SELECT number,
+                             # INET_NTOA(ip_addr) AS ip_addr,
+                             UNIX_TIMESTAMP(created) AS created
+                      FROM assigned WHERE number = %d', $num);
+        
+        $res = mysql_query($q, $db);
+        
+        if($res === false)
+            return false;
+        
+        $info = mysql_fetch_assoc($res);
+        
+        return ($info === false) ? null : $info;
+    }
+    
+   /**
     * Generate a single new integer, return it.
     */
     function next_integer($db)
