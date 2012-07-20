@@ -18,13 +18,13 @@
     }
     
     $count = is_numeric($_POST['count']) ? intval($_POST['count']) : 1;
-    $format = isset($_POST['format']) ? $_POST['format'] : 'text';
+    $format = isset($_POST['format']) ? $_POST['format'] : 'html';
     
-    if($count > 1)
+    if($count <= 0 || 10 < $count)
     {
         header('HTTP/1.1 403');
         header('Content-Type: text/plain');
-        die("Please use a number under 2 for the count.\n");
+        die("Please use a positive number under 10 for the count.\n");
     }
     
     $db = connect_db();
@@ -44,19 +44,40 @@
     switch($format)
     {
         case 'json':
-            $integer_href .= '?format=json';
-        
             header('HTTP/1.1 201');
-            header("Location: {$integer_href}");
             header('Content-Type: application/json');
+
+            if($count == 1)
+                header("Location: {$integer_href}?format=json");
+
             printf("%s\n", json_encode($nums));
+            break;
+        
+        case 'text':
+            header('HTTP/1.1 201');
+            header('Content-Type: text/plain');
+
+            if($count == 1)
+                header("Location: {$integer_href}?format=text");
+
+            printf("%s\n", join("\n", $nums));
             break;
         
         default:
             header('HTTP/1.1 201');
-            header("Location: {$integer_href}");
-            header('Content-Type: text/plain');
-            printf("%s\n", join("\n", $nums));
+            header('Content-Type: text/html');
+
+            if($count == 1)
+                header("Location: {$integer_href}");
+
+            echo '<h1>Your Integer(s):</h1>';
+            
+            foreach($nums as $num)
+            {
+                printf('<br><a href="%s/integer/%d">%d</a>',
+                       htmlspecialchars(dirname($_SERVER['SCRIPT_NAME'])),
+                       $num, $num);
+            }
     }
 
 ?>

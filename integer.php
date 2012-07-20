@@ -10,7 +10,7 @@
     }
     
     $num = ltrim($_SERVER['PATH_INFO'], '/');
-    $format = isset($_GET['format']) ? $_GET['format'] : 'text';
+    $format = isset($_GET['format']) ? $_GET['format'] : 'html';
     
     $db = connect_db();
     $info = get_integer($db, $num);
@@ -31,10 +31,20 @@
             printf("%s\n", json_encode($info));
             break;
         
-        default:
+        case 'text':
             header('Content-Type: text/plain');
             printf("%s\n", print_r($info, 1));
-            echo $_SERVER['REQUEST_METHOD'];
+            break;
+        
+        default:
+            header('Content-Type: text/html');
+            
+            foreach($info as $key => $value)
+            {
+                printf('<dt>%s</dt><dd>%s</dd>',
+                       htmlspecialchars($key),
+                       htmlspecialchars($value));
+            }
     }
 
 ?>
