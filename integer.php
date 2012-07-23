@@ -56,6 +56,10 @@
         Minted <?= date('l, F jS Y', $info['created']) ?>
         at <?= date('g:ia', $info['created']) ?>.
     </p>
+    
+    <p>
+        How do you know it’s good? <code style="white-space: nowrap"><?= $info['number'] ?> &amp; 0xF00000 == 0x100000</code>.
+    </p>
 
 </body>
 </html>
