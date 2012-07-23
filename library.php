@@ -13,7 +13,7 @@
     
     function get_base_dir()
     {
-        return dirname($_SERVER['SCRIPT_NAME']);
+        return rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
     }
     
    /**
