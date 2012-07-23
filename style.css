@@ -1,0 +1,33 @@
+body
+{
+    background-color: #fff7e6;
+    margin: 32px auto 0 auto;
+    width: 364px;
+    
+    color: #45291a;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+body, input[type=submit]
+{
+    font-family: Palatino, Georgia, serif;
+}
+
+a, a:link
+{
+	color: #4999c3;
+}
+
+input[type=submit]
+{
+	cursor: pointer;
+	padding: 0 1em;
+	border-radius: 5px;
+	border: 1px solid #5fcbec;
+	background-color: #fff;
+	color: #4999c3;
+
+	font-size: 20px;
+	line-height: 30px;
+}

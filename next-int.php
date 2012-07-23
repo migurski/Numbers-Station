@@ -39,7 +39,7 @@
 
     mysql_close($db);
     
-    $integer_href = sprintf('%s/integer/%d', dirname($_SERVER['SCRIPT_NAME']), $nums[0]);
+    $integer_href = sprintf('%s/integer/%d', get_base_dir(), $nums[0]);
     
     switch($format)
     {
@@ -51,7 +51,7 @@
                 header("Location: {$integer_href}?format=json");
 
             printf("%s\n", json_encode($nums));
-            break;
+            exit();
         
         case 'text':
             header('HTTP/1.1 201');
@@ -61,23 +61,32 @@
                 header("Location: {$integer_href}?format=text");
 
             printf("%s\n", join("\n", $nums));
-            break;
-        
-        default:
-            header('HTTP/1.1 201');
-            header('Content-Type: text/html');
-
-            if($count == 1)
-                header("Location: {$integer_href}");
-
-            echo '<h1>Your Integer(s):</h1>';
-            
-            foreach($nums as $num)
-            {
-                printf('<br><a href="%s/integer/%d">%d</a>',
-                       htmlspecialchars(dirname($_SERVER['SCRIPT_NAME'])),
-                       $num, $num);
-            }
+            exit();
     }
 
+    header('HTTP/1.1 201');
+    header('Content-Type: text/html');
+
+    if($count == 1)
+        header("Location: {$integer_href}");
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Your Integers (Mission Integers)</title>
+    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+</head>
+<body>
+    <h1><a href="./"><img src="logo.png" width="364" height="166" alt="Mission Integers"></a></h1>
+    <h2>Your Integers</h2>
+    
+    <ul>
+        <? foreach($nums as $num) { ?>
+            <li><a href="<?= htmlspecialchars(get_base_dir()) ?>/integer/<?= $num ?>"><?= $num ?></a></li>
+        <? } ?>
+    </ul>
+
+</body>
+</html>

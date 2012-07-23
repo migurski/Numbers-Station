@@ -11,6 +11,11 @@
         return $db;
     }
     
+    function get_base_dir()
+    {
+        return dirname($_SERVER['SCRIPT_NAME']);
+    }
+    
    /**
     * Check a few high bits to determine whether the number was made here.
     */

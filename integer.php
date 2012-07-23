@@ -1,6 +1,7 @@
 <?php
 
     require_once 'library.php';
+    putenv("TZ=America/Los_Angeles");
     
     if(!is_numeric(ltrim($_SERVER['PATH_INFO'], '/')))
     {
@@ -29,22 +30,32 @@
         case 'json':
             header('Content-Type: application/json');
             printf("%s\n", json_encode($info));
-            break;
+            exit();
         
         case 'text':
             header('Content-Type: text/plain');
             printf("%s\n", print_r($info, 1));
-            break;
-        
-        default:
-            header('Content-Type: text/html');
-            
-            foreach($info as $key => $value)
-            {
-                printf('<dt>%s</dt><dd>%s</dd>',
-                       htmlspecialchars($key),
-                       htmlspecialchars($value));
-            }
+            exit();
     }
 
+    header('Content-Type: text/html');
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>#<?= $info['number'] ?> (Mission Integers)</title>
+    <link rel="stylesheet" type="text/css" media="all" href="<?= htmlspecialchars(get_base_dir()) ?>/style.css">
+</head>
+<body>
+    <h1><a href="<?= htmlspecialchars(get_base_dir()) ?>/"><img src="<?= htmlspecialchars(get_base_dir()) ?>/logo.png" width="364" height="166" alt="Mission Integers"></a></h1>
+    <h2>#<?= $info['number'] ?></h2>
+    
+    <p>
+        Minted <?= date('l, F jS Y', $info['created']) ?>
+        at <?= date('g:ia', $info['created']) ?>.
+    </p>
+
+</body>
+</html>
