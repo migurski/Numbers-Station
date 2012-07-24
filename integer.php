@@ -46,7 +46,10 @@
 <head>
 	<meta charset="utf-8" />
 	<title>#<?= $info['number'] ?> (Mission Integers)</title>
-    <link rel="stylesheet" type="text/css" media="all" href="<?= htmlspecialchars(get_base_dir()) ?>/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars(get_base_dir()) ?>/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars(get_base_dir()) ?>/narrow.css" media="only screen and (max-device-width: 400px)">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
     <h1><a href="<?= htmlspecialchars(get_base_dir()) ?>/"><img src="<?= htmlspecialchars(get_base_dir()) ?>/logo.png" width="364" height="166" alt="Mission Integers"></a></h1>
