@@ -64,5 +64,7 @@
         How do you know it’s good? <code style="white-space: nowrap"><?= $info['number'] ?> &amp; 0xF00000 == 0x100000</code>.
     </p>
 
+    <p id="footer"><a href="http://twitter.com/missionintegers">@missionintegers</a>. Instigated 2012. Be sure to visit our Brooklyn branch, <a href="http://brooklynintegers.com">Brooklyn Integers</a>.</p>
+
 </body>
 </html>

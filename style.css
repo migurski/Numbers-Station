@@ -18,7 +18,20 @@ body, input[type=submit]
 
 a, a:link
 {
+    white-space: nowrap;
 	color: #4999c3;
+}
+
+p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+p#footer
+{
+    border-top: 1px solid #5fcbec;
+    padding-top: 1em;
 }
 
 input[type=submit]
