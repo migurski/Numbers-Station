@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>API (Mission Integers)</title>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="narrow.css" media="only screen and (max-device-width: 400px)">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+    <h1><a href="./"><img src="logo.png" width="364" height="166" alt="Mission Integers"></a></h1>
+
+    <h2>API</h2>
+    <p>The Mission Integers API helps you get the numbers you need, where and when you want them. We choose <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, a time-honored tradition of moving pieces of data around on the web.</p>
+
+    <h3>New Integers</h3>
+    <p>To get a new integer, just send a <code>POST</code> request to <code>/next-int</code>, with a <code>format</code> parameter:</p>
+    <pre>curl -v -X POST -d format=text http://www.missionintegers.com/next-int</pre>
+    <p>Look for your integer in the response body:</p>
+    <pre>HTTP/1.1 201 Created
+Location: /integer/2031838?format=text
+Content-Length: 8
+Content-Type: text/plain
+
+2031838</pre>
+    <p>Acceptable values for <code>format</code> include <samp>json</samp> and <samp>text</samp>.</p>
+
+    <h3>Batch Orders</h3>
+    <p>Try sending a <code>count</code> if you want more than one!</p>
+    <pre>curl -v -X POST -d format=json -d count=5 http://www.missionintegers.com/next-int</pre>
+    <pre>HTTP/1.1 201 Created
+Location: /integer/2031838?format=text
+Content-Length: 42
+Content-Type: application/json
+
+[2031864,2031866,2031868,2031870,2031872]</pre>
+
+    <h3>Try One</h3>
+    <p><i>Let us mint one of your very own.</i></p>
+    
+    <form method="post" action="next-int">
+        <p style="text-align: right">
+        <input type="submit" name="action" value="Mint it…" />
+        </p>
+    </form>
+
+    <p id="footer"><a href="http://twitter.com/missionintegers">@missionintegers</a>. Instigated 2012. Be sure to visit our Brooklyn branch, <a href="http://brooklynintegers.com">Brooklyn Integers</a>. Check out our <a href="api.html">API</a>.</p>
+
+</body>
+</html>
