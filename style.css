@@ -11,8 +11,25 @@ body
     line-height: 24px;
 }
 
+h1 img
+{
+    position: relative;
+    left: -20px;
+}
+
 h2 { font-size: 32px }
 h3 { font-size: 23px }
+
+#integer h2
+{
+    font-size: 64px;
+    font-family: Georgia, Palatino, serif;
+    color: #444;
+}
+
+#integer * { text-align: center }
+
+.unit { white-space: nowrap }
 
 body, input[type=submit]
 {

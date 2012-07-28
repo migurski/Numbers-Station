@@ -50,19 +50,16 @@
     <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars(get_base_dir()) ?>/narrow.css" media="only screen and (max-device-width: 400px)">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
 </head>
 <body>
     <h1><a href="<?= htmlspecialchars(get_base_dir()) ?>/"><img src="<?= htmlspecialchars(get_base_dir()) ?>/logo.png" width="364" height="166" alt="Mission Integers"></a></h1>
-    <h2>#<?= $info['number'] ?></h2>
     
-    <p>
-        Minted <?= date('l, F jS Y', $info['created']) ?>
-        at <?= date('g:ia', $info['created']) ?>.
-    </p>
-    
-    <p>
-        How do you know it’s good? <code style="white-space: nowrap"><?= $info['number'] ?> &amp; 0xF00000 == 0x100000</code>.
-    </p>
+    <div id="integer">
+        <h2><?= $info['number'] ?></h2>
+        <p>Minted <?= date('l, F jS Y', $info['created']) ?> <span class="unit">at <?= date('g:ia', $info['created']) ?></span>.</p>
+        <p>How do you know it’s good? <code class="unit"><?= $info['number'] ?> &amp; 0xF00000 == 0x100000</code>.</p>
+    </div>
 
     <p id="footer"><a href="http://twitter.com/missionintegers">@missionintegers</a>. Instigated 2012. Be sure to visit our Brooklyn branch, <a href="http://brooklynintegers.com">Brooklyn Integers</a>. Check out our <a href="<?= htmlspecialchars(get_base_dir()) ?>/api.html">API</a>.</p>
 

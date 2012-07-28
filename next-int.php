@@ -80,6 +80,7 @@
     <link rel="stylesheet" type="text/css" href="narrow.css" media="only screen and (max-device-width: 400px)">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
 </head>
 <body>
     <h1><a href="./"><img src="logo.png" width="364" height="166" alt="Mission Integers"></a></h1>

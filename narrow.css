@@ -7,4 +7,10 @@ h1 img
 {
     width: 280px;
     height: 128px;
+    left: 0px;
+}
+
+#integer h2
+{
+    font-size: 45px
 }
