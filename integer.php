@@ -18,7 +18,7 @@
 
     mysql_close($db);
     
-    if(is_null($info))
+    if(empty($info))
     {
         header('HTTP/1.1 404');
         header('Content-Type: text/plain');
