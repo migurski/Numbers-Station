@@ -2,11 +2,17 @@
 
     function connect_db()
     {
-        $db = mysql_connect('localhost', 'mission_ints', '1nt3g3rs');
+        $db = mysql_connect(getenv('MINT_DB_HOSTNAME'),
+                            getenv('MINT_DB_USERNAME'),
+                            getenv('MINT_DB_PASSWORD'));
 
-        mysql_select_db('mission_ints', $db);
-        mysql_query('SET @@auto_increment_increment=2', $db);
-        mysql_query('SET @@auto_increment_offset=2', $db);
+        mysql_select_db(getenv('MINT_DB_DATABASE'), $db);
+        
+        if(getenv('MINT_DB_AUTOINC_INC') && getenv('MINT_DB_AUTOINC_OFF'))
+        {
+            mysql_query('SET @@auto_increment_increment='.getenv('MINT_DB_AUTOINC_INC'), $db);
+            mysql_query('SET @@auto_increment_offset='.getenv('MINT_DB_AUTOINC_OFF'), $db);
+        }
         
         return $db;
     }

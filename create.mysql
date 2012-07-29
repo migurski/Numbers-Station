@@ -41,4 +41,7 @@ CREATE TABLE assigned
 LOAD DATA LOCAL INFILE 'primes-1.txt'
     INTO TABLE reserved (number);
 
+LOAD DATA LOCAL INFILE 'primes-2.txt'
+    INTO TABLE reserved (number);
+
 UPDATE reserved SET reason = 'prime';

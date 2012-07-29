@@ -1,0 +1,26 @@
+Installation
+
+Uncompress the primes listings (primes-1.txt.bz2, etc.), create a new MySQL
+database and run the included create.mysql script to generate required tables.
+
+
+
+Configuration
+
+Details of information is stored in environment variables, which in Apache can
+be defined using the SetEnv directive:
+
+    http://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv
+
+Database connection variables:
+
+    MINT_DB_HOSTNAME: MySQL hostname.
+    MINT_DB_USERNAME: MySQL user name.
+    MINT_DB_PASSWORD: MySQL password.
+    MINT_DB_DATABASE: MySQL database name.
+
+    MINT_DB_AUTOINC_INC: Optional auto-increment stride, explained in MySQL docs:
+        http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_increment
+
+    MINT_DB_AUTOINC_OFF: Optional auto-increment offset, explained in MySQL docs:
+        http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_offset
