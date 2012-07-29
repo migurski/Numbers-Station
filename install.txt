@@ -14,13 +14,21 @@ be defined using the SetEnv directive:
 
 Database connection variables:
 
-    MINT_DB_HOSTNAME: MySQL hostname.
-    MINT_DB_USERNAME: MySQL user name.
-    MINT_DB_PASSWORD: MySQL password.
-    MINT_DB_DATABASE: MySQL database name.
+    MINT_DB_HOSTNAME
+    MINT_DB_USERNAME
+    MINT_DB_PASSWORD
+    MINT_DB_DATABASE
+    Required MySQL hostname, user, password and database name.
 
-    MINT_DB_AUTOINC_INC: Optional auto-increment stride, explained in MySQL docs:
-        http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_increment
+    MINT_DB_AUTOINC_INC
+    Optional auto-increment stride, explained in MySQL docs:
+    http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_increment
 
-    MINT_DB_AUTOINC_OFF: Optional auto-increment offset, explained in MySQL docs:
-        http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_offset
+    MINT_DB_AUTOINC_OFF
+    Optional auto-increment offset, explained in MySQL docs:
+    http://dev.mysql.com/doc/refman/5.0/en/replication-options-master.html#sysvar_auto_increment_offset
+
+Other configuration variables:
+    
+    MINT_MONITORING_FLAG
+    Optional boolean flag for using monitoring values in monitor table.

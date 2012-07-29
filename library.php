@@ -63,10 +63,12 @@
     */
     function next_integer($db)
     {
+        $start_time = microtime(true);
+    
         while(true)
         {
             // Nurture a new raw integer.
-            $res = mysql_query("REPLACE INTO sequence (`key`) VALUES ('hello')", $db);
+            $res = mysql_query("REPLACE INTO sequence (`key`) VALUES ('h')", $db);
             
             if($res === false)
                 return false;
@@ -101,6 +103,24 @@
             
             if($res === false)
                 return false;
+            
+            if(getenv('MINT_MONITORING_FLAG'))
+            {
+                $t = microtime(true) - $start_time;
+                
+                // Set some monitoring vaues for later pickup
+                $q = sprintf("UPDATE monitor
+                              SET numbers_made = numbers_made + 1,
+                                  seconds_spent = seconds_spent + %.3f,
+                                  fastest_number = LEAST(fastest_number, %.3f),
+                                  slowest_number = GREATEST(slowest_number, %.3f)",
+                             $t, $t, $t);
+                
+                $res = mysql_query($q, $db);
+                
+                if($res === false)
+                    return false;
+            }
             
             // All done!
             return $num;

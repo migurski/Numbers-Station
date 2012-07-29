@@ -9,7 +9,26 @@ CREATE TABLE sequence
 
 ) TYPE=InnoDB;
 
+# Starting artisinal integer
 ALTER TABLE sequence AUTO_INCREMENT = 983040;
+
+
+
+DROP TABLE IF EXISTS monitor;
+
+# Monitoring values, see MINT_MONITORING_FLAG (install.txt)
+# This table only ever stores a single row.
+
+CREATE TABLE monitor
+(
+    numbers_made    BIGINT UNSIGNED DEFAULT 0,
+    seconds_spent   DOUBLE DEFAULT 0,
+    fastest_number  DOUBLE DEFAULT 9999,
+    slowest_number  DOUBLE DEFAULT 0
+    
+) TYPE=InnoDB;
+
+INSERT INTO monitor SET numbers_made=0;
 
 
 
